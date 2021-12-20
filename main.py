@@ -4,8 +4,12 @@ import random
 
 BACKGROUND_COLOR = "#B1DDC6"
 
-data = pandas.read_csv("data/french_words.csv")
-data_list= data.to_dict(orient='records') # [list of dictionaries{keys: 'French', 'English}]
+try:
+    data = pandas.read_csv("data/words_to_learn.csv")
+except FileNotFoundError:
+    data = pandas.read_csv("data/french_words.csv")
+finally:
+    data_list = data.to_dict(orient='records') # [list of dictionaries{keys: 'French', 'English}]
 
 #-------------------Change canvas items----------------------#
 
@@ -20,6 +24,8 @@ def show_answer():
 def right():
     data_list.remove(data_list[0])
     replace_canvas_items(flash_front_img, "French", data_list[0]["French"])
+    data = pandas.DataFrame(data_list)
+    data.to_csv("data/words_to_learn.csv", index=False)
     timer = window.after(3000, func=show_answer)
 
 def wrong():
@@ -39,7 +45,7 @@ flash_front_img = PhotoImage(file="images/card_front.png")
 flash_back_img = PhotoImage(file="images/card_back.png")
 canvas_image = flash_card.create_image(410, 270,image=flash_front_img)
 language = flash_card.create_text(400, 150, text="French", font=("Ariel", 40, "italic"))
-word = flash_card.create_text(400, 263, text="trouve", font=("Ariel", 60, "bold"))
+word = flash_card.create_text(400, 263, text=data_list[0]['French'], font=("Ariel", 60, "bold"))
 flash_card.grid(column=0, row=0, columnspan=2)
 
 
