@@ -7,10 +7,10 @@ Flash cards to learn languages(French to English).
    From the second run, it loads data from <mark>data/words_to_learn.csv</mark>. This file 
    contains words which you have not attempted yet or you have marked as wrong.
 
-**NOTE**: If you want to load all the cards, then remove <mark>data/words_to_learn.csv</mark> 
-          and run again.
+   **NOTE**: If you want to load all the cards, then remove <mark>data/words_to_learn.csv</mark> 
+             and run again.
 
 
 2. Program shows *french* word for 5 seconds and then display its corresponding *English* word.
 
-3. If you have correctly guessed the word, then click on &check; otherwise, click on &#10060;
+3. If you have correctly guessed the word, then click on &#9989;; otherwise, click on &#10060;
